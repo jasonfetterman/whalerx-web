@@ -6,8 +6,7 @@
   <title>WhalerX · Dashboard</title>
 
   <script>
-    // TEMP frontend gate (Phase 2)
-    // If user hasn't come from login, send them there
+    // Frontend gate (temporary until backend auth)
     if (!sessionStorage.getItem("whalerx_logged_in")) {
       window.location.href = "login.html";
     }
@@ -53,27 +52,57 @@
   <main class="main">
     <div class="header">
       <h1>Dashboard</h1>
-      <div class="badge">Plan: Pro</div>
+      <div id="planBadge" class="badge">Plan: —</div>
     </div>
 
     <div class="cards">
       <div class="card">
         <h3>Wallets</h3>
-        <p>0 / 3 wallets connected</p>
+        <p id="walletsUsed">—</p>
       </div>
+
       <div class="card">
         <h3>Alert Threshold</h3>
-        <p>Alerts above 500 ETH</p>
+        <p id="threshold">—</p>
       </div>
+
       <div class="card">
         <h3>Telegram</h3>
-        <p>Connected</p>
+        <p id="telegramStatus">—</p>
       </div>
+
       <div class="card">
         <h3>Status</h3>
-        <p>Setup required</p>
+        <p id="statusText">—</p>
       </div>
     </div>
   </main>
+
+  <script>
+    fetch("data.json")
+      .then(res => res.json())
+      .then(data => {
+        const u = data.user;
+
+        document.getElementById("planBadge").textContent =
+          "Plan: " + u.plan;
+
+        document.getElementById("walletsUsed").textContent =
+          u.wallets_used + " / " + u.wallet_limit + " wallets connected";
+
+        document.getElementById("threshold").textContent =
+          "Alerts above " + u.eth_threshold + " ETH";
+
+        document.getElementById("telegramStatus").textContent =
+          u.telegram_connected ? "Connected" : "Not connected";
+
+        document.getElementById("statusText").textContent =
+          u.wallets_used > 0 ? "Active" : "Setup required";
+      })
+      .catch(() => {
+        document.getElementById("statusText").textContent =
+          "Unable to load data";
+      });
+  </script>
 </body>
 </html>
