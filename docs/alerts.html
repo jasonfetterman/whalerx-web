@@ -7,95 +7,26 @@
 
   <style>
     :root {
-      --bg: #0b0f14;
-      --panel: #121824;
-      --accent: #00e5a8;
-      --text: #e6e9ef;
-      --muted: #9aa4b2;
-      --border: #1e2636;
+      --bg:#0b0f14;
+      --panel:#121824;
+      --accent:#00e5a8;
+      --text:#e6e9ef;
+      --muted:#9aa4b2;
+      --border:#1e2636;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, sans-serif;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      display: flex;
-      min-height: 100vh;
-    }
-
-    .sidebar {
-      width: 240px;
-      background: #070a0f;
-      border-right: 1px solid var(--border);
-      padding: 30px 20px;
-    }
-
-    .logo {
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-bottom: 40px;
-    }
-
-    .nav a {
-      display: block;
-      padding: 12px 14px;
-      border-radius: 8px;
-      color: var(--muted);
-      text-decoration: none;
-      margin-bottom: 10px;
-    }
-
-    .nav a.active,
-    .nav a:hover {
-      background: var(--panel);
-      color: var(--text);
-    }
-
-    .main {
-      flex: 1;
-      padding: 40px;
-    }
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-    }
-
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-
-    .table th,
-    .table td {
-      padding: 14px 16px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.95rem;
-    }
-
-    .table th {
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .empty {
-      text-align: center;
-      color: var(--muted);
-      padding: 40px;
-    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif;}
+    body{background:var(--bg);color:var(--text);display:flex;min-height:100vh;}
+    .sidebar{width:240px;background:#070a0f;border-right:1px solid var(--border);padding:30px 20px;}
+    .logo{font-size:1.4rem;font-weight:800;margin-bottom:40px;}
+    .nav a{display:block;padding:12px 14px;border-radius:8px;color:var(--muted);text-decoration:none;margin-bottom:10px;}
+    .nav a.active,.nav a:hover{background:var(--panel);color:var(--text);}
+    .main{flex:1;padding:40px;}
+    h1{margin-bottom:20px;}
+    table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+    th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:.95rem;}
+    th{color:var(--muted);font-weight:600;}
+    .empty{text-align:center;color:var(--muted);padding:40px;}
+    .note{margin-top:20px;font-size:.85rem;color:var(--muted);}
   </style>
 </head>
 
@@ -105,22 +36,60 @@
     <nav class="nav">
       <a href="dashboard.html">Overview</a>
       <a href="wallets.html">Wallets</a>
-      <a class="active" href="#">Alerts</a>
-      <a href="#">Plan</a>
-      <a href="#">Account</a>
+      <a class="active" href="alerts.html">Alerts</a>
+      <a href="plan.html">Plan</a>
+      <a href="account.html">Account</a>
     </nav>
   </aside>
 
   <main class="main">
-    <div class="header">
-      <h1>Alerts</h1>
-    </div>
+    <h1>Alerts</h1>
 
-    <table class="table">
+    <table>
       <thead>
         <tr>
-          <th>Time</th>
-          <th>Wallet</th>
-          <th>Asset</th>
-          <th>Amount</th>
+          <th>Status</th>
+          <th>Details</th>
         </tr>
+      </thead>
+      <tbody id="alertsTable">
+        <tr>
+          <td colspan="2" class="empty">Loading…</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div id="alertNote" class="note"></div>
+  </main>
+
+  <script>
+    fetch("data.json")
+      .then(r => r.json())
+      .then(d => {
+        const u = d.user;
+        const tbody = document.getElementById("alertsTable");
+        const note = document.getElementById("alertNote");
+
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="2" class="empty">
+              No alerts yet. Alerts will appear when wallets are active.
+            </td>
+          </tr>
+        `;
+
+        note.textContent =
+          "Current threshold: " + u.eth_threshold + " ETH · Plan: " + u.plan;
+      })
+      .catch(() => {
+        document.getElementById("alertsTable").innerHTML = `
+          <tr>
+            <td colspan="2" class="empty">
+              Unable to load alert data.
+            </td>
+          </tr>
+        `;
+      });
+  </script>
+</body>
+</html>
