@@ -5,5 +5,7 @@
     "wallets_used": 0,
     "eth_threshold": 500,
     "telegram_connected": true
-  }
+  },
+  "wallets": [],
+  "alerts": []
 }
