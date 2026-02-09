@@ -44,7 +44,7 @@ export default function Home() {
               href="/dashboard"
               className="block bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded text-lg font-semibold"
             >
-              Go to Dashboard
+              Try Free
             </Link>
 
             <button
@@ -64,36 +64,39 @@ export default function Home() {
       {/* PRICING */}
       <section className="py-20 border-t border-gray-800">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-10">Simple Pricing</h2>
+          <h2 className="text-3xl font-bold mb-2">Choose Your Plan</h2>
+          <p className="text-gray-400 mb-10">
+            Start free. Upgrade when you want more signal.
+          </p>
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* FREE */}
             <div className="border border-gray-700 rounded-lg p-6">
               <h3 className="text-xl font-semibold mb-2">Free</h3>
-              <p className="text-gray-400 mb-4">Try it out</p>
+              <p className="text-gray-400 mb-4">Test the signal</p>
               <p className="text-3xl font-bold mb-6">$0</p>
               <ul className="text-gray-300 space-y-2 mb-6">
-                <li>• 1 wallet tracked</li>
-                <li>• ETH alerts</li>
+                <li>• Track 1 wallet</li>
+                <li>• Ethereum alerts only</li>
                 <li>• Telegram notifications</li>
               </ul>
               <Link
                 href="/dashboard"
                 className="block bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded font-semibold"
               >
-                Get Started
+                Start Free
               </Link>
             </div>
 
-            {/* PRO */}
-            <div className="border border-blue-600 rounded-lg p-6">
+            {/* PRO (ANCHOR) */}
+            <div className="border-2 border-blue-600 rounded-lg p-6 scale-105">
               <h3 className="text-xl font-semibold mb-2">Pro</h3>
-              <p className="text-blue-400 mb-4">Most Popular</p>
+              <p className="text-blue-400 mb-4">Best Value</p>
               <p className="text-3xl font-bold mb-6">$19/mo</p>
               <ul className="text-gray-300 space-y-2 mb-6">
-                <li>• 10 wallets tracked</li>
+                <li>• Track up to 10 wallets</li>
                 <li>• Multi-chain alerts</li>
-                <li>• Priority alerts</li>
+                <li>• Faster notifications</li>
               </ul>
               <button
                 onClick={handleCheckout}
@@ -106,12 +109,12 @@ export default function Home() {
             {/* ELITE */}
             <div className="border border-gray-700 rounded-lg p-6">
               <h3 className="text-xl font-semibold mb-2">Elite</h3>
-              <p className="text-gray-400 mb-4">Power users</p>
+              <p className="text-gray-400 mb-4">For serious traders</p>
               <p className="text-3xl font-bold mb-6">$49/mo</p>
               <ul className="text-gray-300 space-y-2 mb-6">
-                <li>• 50 wallets tracked</li>
+                <li>• Track up to 50 wallets</li>
                 <li>• All supported chains</li>
-                <li>• Advanced alerts</li>
+                <li>• Advanced whale alerts</li>
               </ul>
               <button
                 onClick={handleCheckout}
