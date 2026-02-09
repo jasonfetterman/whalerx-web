@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WhalerX · Account</title>
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#121824;
+      --accent:#00e5a8;
+      --text:#e6e9ef;
+      --muted:#9aa4b2;
+      --border:#1e2636;
+      --danger:#ff4d4d;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif;}
+    body{background:var(--bg);color:var(--text);display:flex;min-height:100vh;}
+    .sidebar{width:240px;background:#070a0f;border-right:1px solid var(--border);padding:30px 20px;}
+    .logo{font-size:1.4rem;font-weight:800;margin-bottom:40px;}
+    .nav a{display:block;padding:12px 14px;border-radius:8px;color:var(--muted);text-decoration:none;margin-bottom:10px;}
+    .nav a.active,.nav a:hover{background:var(--panel);color:var(--text);}
+    .main{flex:1;padding:40px;}
+    h1{margin-bottom:20px;}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:30px;margin-bottom:30px;}
+    .label{color:var(--muted);font-size:.9rem;margin-bottom:6px;}
+    .value{font-weight:700;margin-bottom:16px;}
+    .button{display:inline-block;background:var(--accent);color:#000;padding:12px 18px;border-radius:8px;font-weight:700;text-decoration:none;margin-right:10px;}
+    .danger{background:var(--danger);color:#fff;}
+    .note{font-size:.85rem;color:var(--muted);}
+  </style>
+</head>
+
+<body>
+  <aside class="sidebar">
+    <div class="logo">WhalerX</div>
+    <nav class="nav">
+      <a href="dashboard.html">Overview</a>
+      <a href="wallets.html">Wallets</a>
+      <a href="alerts.html">Alerts</a>
+      <a href="plan.html">Plan</a>
+      <a class="active" href="account.html">Account</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <h1>Account</h1>
+
+    <div class="card">
+      <div class="label">Telegram Account</div>
+      <div class="value">@yourusername</div>
+
+      <div class="label">Connection Status</div>
+      <div class="value">Connected</div>
+
+      <a class="button" href="https://t.me/fettermanbot">Open Telegram Bot</a>
+    </div>
+
+    <div class="card">
+      <h2>Danger Zone</h2>
+      <p class="note">
+        Disconnecting Telegram will stop all alerts immediately.
+      </p>
+      <br />
+      <a class="button danger" href="#">Disconnect Telegram</a>
+    </div>
+  </main>
+</body>
+</html>
