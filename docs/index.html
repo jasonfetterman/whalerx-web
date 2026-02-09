@@ -5,33 +5,150 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WhalerX — Real-Time Crypto Whale Alerts</title>
 
+  <meta name="description" content="Real-time crypto whale alerts delivered straight to Telegram." />
+
   <style>
-    body {
-      background: #0b0f14;
-      color: #e6e9ef;
-      font-family: system-ui, sans-serif;
+    :root {
+      --bg: #0b0f14;
+      --panel: #121824;
+      --accent: #00e5a8;
+      --text: #e6e9ef;
+      --muted: #9aa4b2;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 40px;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
       text-align: center;
     }
-    h1 { font-size: 2.8rem; margin-bottom: 20px; }
-    p { color: #9aa4b2; font-size: 1.2rem; }
-    a {
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .tier {
+      background: var(--panel);
+      border-radius: 14px;
+      padding: 35px;
+      border: 1px solid #1e2636;
+    }
+
+    .tier h2 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .tier ul {
+      list-style: none;
+      margin-bottom: 25px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .tier ul li {
+      margin-bottom: 8px;
+    }
+
+    a.button {
       display: inline-block;
-      margin-top: 30px;
-      background: #00e5a8;
+      background: var(--accent);
       color: #000;
       padding: 14px 26px;
       border-radius: 8px;
       font-weight: 700;
       text-decoration: none;
     }
+
+    footer {
+      margin-top: 80px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
   </style>
 </head>
 
 <body>
-  <h1>WhalerX</h1>
-  <p>Real-time crypto whale alerts delivered straight to Telegram.</p>
-  <a href="https://t.me/fettermanbot">Start on Telegram</a>
+  <div class="container">
+    <h1>WhalerX</h1>
+    <p>
+      Real-time crypto whale alerts delivered straight to Telegram.
+      Track high-value ETH and token movements the moment they hit the chain.
+    </p>
+
+    <div class="tiers">
+      <div class="tier">
+        <h2>Pro</h2>
+        <div class="price">$29 / month</div>
+        <ul>
+          <li>Whale alerts</li>
+          <li>Limited wallets</li>
+          <li>Standard thresholds</li>
+        </ul>
+        <a class="button" href="https://buy.stripe.com/fZuaEP1PV0kSgAO7uo2sM03">Start Pro</a>
+      </div>
+
+      <div class="tier">
+        <h2>Elite</h2>
+        <div class="price">$79 / month</div>
+        <ul>
+          <li>More wallets</li>
+          <li>Lower thresholds</li>
+          <li>Priority alerts</li>
+        </ul>
+        <a class="button" href="https://buy.stripe.com/3cI7sDbqv3x4cky8ys2sM04">Go Elite</a>
+      </div>
+
+      <div class="tier">
+        <h2>Super Elite</h2>
+        <div class="price">$149 / month</div>
+        <ul>
+          <li>Unlimited wallets</li>
+          <li>Ultra-low thresholds</li>
+          <li>Early feature access</li>
+        </ul>
+        <a class="button" href="https://buy.stripe.com/cNi9AL2TZ9Vsbgu3e82sM05">Become Super Elite</a>
+      </div>
+    </div>
+
+    <a class="button" href="https://t.me/fettermanbot">Open Telegram Bot</a>
+
+    <footer>
+      © 2026 WhalerX · Not financial advice
+    </footer>
+  </div>
 </body>
 </html>
