@@ -24,6 +24,13 @@
       justify-content:center;
       padding:30px;
     }
+    .brand{
+      position:absolute;
+      top:24px;
+      left:24px;
+      font-weight:800;
+      letter-spacing:.3px;
+    }
     .card{
       width:100%;
       max-width:420px;
@@ -34,23 +41,20 @@
       text-align:center;
     }
     h1{margin-bottom:10px;}
-    p{color:var(--muted);margin-bottom:28px;}
-    .tg-box{
-      border:1px dashed var(--border);
-      border-radius:14px;
-      padding:22px;
-      margin-bottom:22px;
+    p{color:var(--muted);margin-bottom:26px;}
+    .button{
+      display:inline-block;
+      background:var(--accent);
+      color:#000;
+      padding:14px 22px;
+      border-radius:10px;
+      font-weight:800;
+      text-decoration:none;
+      margin-bottom:18px;
     }
     .note{
       font-size:.85rem;
       color:var(--muted);
-    }
-    .brand{
-      position:absolute;
-      top:24px;
-      left:24px;
-      font-weight:800;
-      letter-spacing:.3px;
     }
   </style>
 </head>
@@ -60,36 +64,18 @@
 
   <div class="card">
     <h1>Log in</h1>
-    <p>Use Telegram to access your dashboard.</p>
+    <p>
+      WhalerX uses Telegram as your secure identity.
+      Open the bot to continue.
+    </p>
 
-    <div class="tg-box">
-      <script async src="https://telegram.org/js/telegram-widget.js?22"
-        data-telegram-login="fettermanbot"
-        data-size="large"
-        data-userpic="true"
-        data-radius="10"
-        data-request-access="write"
-        data-onauth="onTelegramAuth(user)">
-      </script>
-      <noscript>
-        <p class="note">JavaScript required to log in with Telegram.</p>
-      </noscript>
-    </div>
+    <a class="button" href="https://t.me/fettermanbot">
+      Open Telegram Bot
+    </a>
 
     <p class="note">
-      No passwords. We never see your messages or wallets.
+      No passwords · No emails · No wallet access
     </p>
   </div>
-
-  <script>
-    function onTelegramAuth(user) {
-      // Phase 2.2 will send this to backend
-      console.log("Telegram user:", user);
-
-      // Redirect to dashboard (static for now)
-      window.location.href =
-        "https://jasonfetterman.github.io/whalerx-web/dashboard.html";
-    }
-  </script>
 </body>
 </html>
