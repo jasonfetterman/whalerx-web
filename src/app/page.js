@@ -21,18 +21,20 @@ export default function Home() {
     <main className="min-h-screen flex items-center justify-center bg-black text-white">
       <div className="max-w-xl text-center px-6">
         <h1 className="text-4xl font-bold mb-4">
-          Real-Time Whale Wallet Alerts
+          Track Crypto Whales in Real Time.
+          <br />
+          Get Alerts Before the Market Moves.
         </h1>
 
         <p className="text-lg text-gray-300 mb-6">
-          Track large on-chain movements and get instant Telegram alerts
-          before the market reacts.
+          WhalerX monitors large on-chain transactions and sends instant
+          Telegram alerts so you can see what whales are doing as it happens.
         </p>
 
         <ul className="text-left text-gray-300 mb-8 space-y-2">
-          <li>• Monitor whale wallets automatically</li>
-          <li>• Instant alerts on large transfers</li>
-          <li>• No noise — just signals</li>
+          <li>• Instant alerts on large wallet movements</li>
+          <li>• Track whale wallets across major chains</li>
+          <li>• Telegram-first — alerts where you already are</li>
         </ul>
 
         <div className="space-y-4">
