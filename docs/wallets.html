@@ -23,12 +23,49 @@
     .nav a.active,.nav a:hover{background:var(--panel);color:var(--text);}
     .main{flex:1;padding:40px;}
     .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;}
-    .button{background:var(--accent);color:#000;padding:10px 18px;border-radius:8px;font-weight:700;opacity:.6;cursor:not-allowed;}
+    button{
+      background:var(--accent);
+      color:#000;
+      padding:10px 18px;
+      border-radius:8px;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+    }
+    button:disabled{
+      opacity:.4;
+      cursor:not-allowed;
+    }
     table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
     th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:.95rem;}
     th{color:var(--muted);font-weight:600;}
     .empty{text-align:center;color:var(--muted);padding:40px;}
     .note{margin-top:20px;font-size:.85rem;color:var(--muted);}
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.6);
+      display:none;
+      align-items:center;
+      justify-content:center;
+    }
+    .modal-box{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:30px;
+      width:100%;
+      max-width:420px;
+    }
+    .modal input{
+      width:100%;
+      padding:12px;
+      border-radius:8px;
+      border:1px solid var(--border);
+      background:#070a0f;
+      color:var(--text);
+      margin-bottom:14px;
+    }
   </style>
 </head>
 
@@ -47,14 +84,14 @@
   <main class="main">
     <div class="header">
       <h1>Wallets</h1>
-      <span id="walletBtn" class="button">Add Wallet</span>
+      <button id="addBtn">Add Wallet</button>
     </div>
 
     <table>
       <thead>
         <tr>
+          <th>Wallet</th>
           <th>Status</th>
-          <th>Info</th>
         </tr>
       </thead>
       <tbody id="walletTable">
@@ -64,47 +101,65 @@
       </tbody>
     </table>
 
-    <div class="note" id="walletNote"></div>
+    <div id="walletNote" class="note"></div>
   </main>
 
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-box">
+      <h3>Add Wallet</h3>
+      <input id="walletInput" placeholder="0x..." />
+      <button onclick="submitWallet()">Continue</button>
+    </div>
+  </div>
+
   <script>
+    let userData;
+
     fetch("data.json")
       .then(r => r.json())
       .then(d => {
+        userData = d;
         const u = d.user;
         const tbody = document.getElementById("walletTable");
         const note = document.getElementById("walletNote");
-        const btn = document.getElementById("walletBtn");
+        const btn = document.getElementById("addBtn");
 
-        tbody.innerHTML = "";
-
-        if (u.wallets_used === 0) {
-          tbody.innerHTML = `
-            <tr>
-              <td colspan="2" class="empty">
-                No wallets connected yet.
-              </td>
-            </tr>
-          `;
-        }
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="2" class="empty">
+              No wallets connected yet.
+            </td>
+          </tr>
+        `;
 
         note.textContent =
           `You are using ${u.wallets_used} of ${u.wallet_limit} wallets.`;
 
-        if (u.wallets_used < u.wallet_limit) {
-          btn.style.opacity = "1";
-          btn.style.cursor = "pointer";
+        if (u.wallets_used >= u.wallet_limit) {
+          btn.disabled = true;
+          note.textContent += " Upgrade your plan to add more.";
         }
-      })
-      .catch(() => {
-        document.getElementById("walletTable").innerHTML = `
-          <tr>
-            <td colspan="2" class="empty">
-              Unable to load wallet data.
-            </td>
-          </tr>
-        `;
       });
+
+    document.getElementById("addBtn").onclick = () => {
+      document.getElementById("modal").style.display = "flex";
+    };
+
+    function submitWallet(){
+      alert(
+        "Wallet submission received.\n\n" +
+        "Next step: Telegram confirmation.\n\n" +
+        "(Backend wiring comes next.)"
+      );
+      document.getElementById("modal").style.display = "none";
+    }
+
+    document.getElementById("modal").onclick = e => {
+      if (e.target.id === "modal") {
+        e.target.style.display = "none";
+      }
+    };
   </script>
 </body>
 </html>
