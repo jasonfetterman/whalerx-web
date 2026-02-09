@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WhalerX · Log in</title>
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#121824;
+      --accent:#00e5a8;
+      --text:#e6e9ef;
+      --muted:#9aa4b2;
+      --border:#1e2636;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif;}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:30px;
+    }
+    .card{
+      width:100%;
+      max-width:420px;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:36px;
+      text-align:center;
+    }
+    h1{margin-bottom:10px;}
+    p{color:var(--muted);margin-bottom:28px;}
+    .tg-box{
+      border:1px dashed var(--border);
+      border-radius:14px;
+      padding:22px;
+      margin-bottom:22px;
+    }
+    .note{
+      font-size:.85rem;
+      color:var(--muted);
+    }
+    .brand{
+      position:absolute;
+      top:24px;
+      left:24px;
+      font-weight:800;
+      letter-spacing:.3px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="brand">WhalerX</div>
+
+  <div class="card">
+    <h1>Log in</h1>
+    <p>Use Telegram to access your dashboard.</p>
+
+    <div class="tg-box">
+      <!-- Telegram Login Widget (static placeholder for now) -->
+      <!-- Replace data-telegram-login with your bot username later -->
+      <script async src="https://telegram.org/js/telegram-widget.js?22"
+        data-telegram-login="fettermanbot"
+        data-size="large"
+        data-userpic="true"
+        data-radius="10"
+        data-request-access="write"
+        data-onauth="onTelegramAuth(user)">
+      </script>
+      <noscript>
+        <p class="note">JavaScript required to log in with Telegram.</p>
+      </noscript>
+    </div>
+
+    <p class="note">
+      No passwords. We never see your messages or wallets.
+    </p>
+  </div>
+
+  <script>
+    // Static placeholder — will wire to backend in Phase 2.2
+    function onTelegramAuth(user) {
+      alert(
+        "Telegram login successful (static demo).\n\n" +
+        "Username: @" + (user.username || "unknown") + "\n" +
+        "ID: " + user.id
+      );
+    }
+  </script>
+</body>
+</html>
