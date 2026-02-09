@@ -51,6 +51,10 @@ export default function Home() {
           >
             Unlock Whale Alerts — $19/mo
           </button>
+
+          <p className="text-sm text-gray-400">
+            No trading. No custody. Public blockchain data only.
+          </p>
         </div>
       </div>
     </main>
