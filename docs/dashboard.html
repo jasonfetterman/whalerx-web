@@ -6,8 +6,8 @@
   <title>WhalerX · Dashboard</title>
 
   <script>
-    // Frontend gate (temporary until backend auth)
-    if (!sessionStorage.getItem("whalerx_logged_in")) {
+    // TEMP frontend auth gate (Phase 3)
+    if (!localStorage.getItem("whalerx_logged_in")) {
       window.location.href = "login.html";
     }
   </script>
@@ -80,28 +80,18 @@
 
   <script>
     fetch("data.json")
-      .then(res => res.json())
-      .then(data => {
-        const u = data.user;
-
-        document.getElementById("planBadge").textContent =
-          "Plan: " + u.plan;
-
+      .then(r => r.json())
+      .then(d => {
+        const u = d.user;
+        document.getElementById("planBadge").textContent = "Plan: " + u.plan;
         document.getElementById("walletsUsed").textContent =
           u.wallets_used + " / " + u.wallet_limit + " wallets connected";
-
         document.getElementById("threshold").textContent =
           "Alerts above " + u.eth_threshold + " ETH";
-
         document.getElementById("telegramStatus").textContent =
           u.telegram_connected ? "Connected" : "Not connected";
-
         document.getElementById("statusText").textContent =
           u.wallets_used > 0 ? "Active" : "Setup required";
-      })
-      .catch(() => {
-        document.getElementById("statusText").textContent =
-          "Unable to load data";
       });
   </script>
 </body>
