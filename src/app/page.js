@@ -49,7 +49,7 @@ export default function Home() {
             onClick={handleCheckout}
             className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-lg font-semibold w-full"
           >
-            Upgrade to Pro ($19/mo)
+            Unlock Whale Alerts — $19/mo
           </button>
         </div>
       </div>
